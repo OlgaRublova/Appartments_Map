@@ -266,7 +266,6 @@ function pickHotel() {
     reset.classList.remove("active");
 
 }
-
 function pickHostel() {
     pick('hostel');
     hostel.classList.toggle("active");
@@ -276,7 +275,6 @@ function pickHostel() {
     reset.classList.remove("active");
 
 }
-
 function pickApartment() {
     pick('apartment');
     apartment.classList.toggle("active");
@@ -315,5 +313,91 @@ function displayOptions(option) {
 
     list.innerHTML = result;
 }
-
 displayOptions();
+
+// Initialize and add the map
+function initMap() {
+
+    //Map options
+    var options = {
+        zoom: 8,
+        center: {lat: 34.2083, lng: -118.6059}
+    };
+
+    //New map
+    var map = new google.maps.Map(document.getElementById("map"), options);
+
+
+    //listen for click on map
+    google.maps.event.addListener(map, "click", function (event) {
+        //add marker
+        addMarker({coords: event.latLng});
+    });
+    /*
+    //add marker
+    var marker = new google.maps.Marker({
+        position: {lat: 34.0101, lng: -118.4959},
+        map: map,
+        icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"//to set your customized marker
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: '<h1>Santa Monica Pier</h1>'
+    });
+
+    marker.addListener("click", function () {//pay attention -  NOT addEventListener, but just ADDLISTENER
+        infoWindow.open(map, marker)
+    })
+*/
+
+    //array of markers
+    var markers = [
+        {
+            coords: {lat: 34.0101, lng: -118.4959},
+            iconImage: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+            content: "<h1>Santa Monica Pier</h1>"
+        },
+        {
+            coords: {lat: 34.0639, lng: -118.3592},
+            iconImage: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+            content: "<h1>LACMA</h1>"
+        },
+        {
+            coords: {lat: 34.0689, lng: -118.4452},
+            iconImage: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+            content: "<h1>UCLA</h1>"
+        }
+
+    ];
+
+    //loop through markers
+    for (var i = 0; i < markers.length; i++) {
+        //add marker
+        addMarker(markers[i]);
+    }
+
+
+    //Add marker function
+    function addMarker(props) {
+        var marker = new google.maps.Marker({
+            position: props.coords, //pay attention - no {} braces
+            map: map,
+            // icon: props.iconImage//to set your customized marker
+        });
+        //check for custom icon
+        if (props.iconImage) {
+            //set icon image
+            marker.setIcon(props.iconImage);
+        }
+        //check content
+        if (props.content) {
+            var infoWindow = new google.maps.InfoWindow({
+                content: props.content
+            })
+        }
+
+        marker.addListener("click", function () {//pay attention -  NOT addEventListener, but just ADDLISTENER
+            infoWindow.open(map, marker)
+        })
+    }
+}

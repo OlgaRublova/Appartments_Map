@@ -171,3 +171,11 @@ body {
     font-weight: bold;
     line-height: 1.2;
 }
+.container__map{
+    height: 100%;
+    width: 62%;
+}
+#map {
+    height: 100%;
+    width: 100%;
+}
