@@ -2,6 +2,7 @@ const housing = document.querySelector('.container__housing');
 const hotel = housing.querySelector('.hotels');
 const hostel = housing.querySelector('.hostels');
 const apartment = housing.querySelector('.apartments');
+const reset = housing.querySelector('.reset');
 
 
 database = [
@@ -236,6 +237,7 @@ database = [
 hotel.addEventListener("click", pickHotel);
 hostel.addEventListener("click", pickHostel);
 apartment.addEventListener("click", pickApartment);
+reset.addEventListener("click", pickAll);
 
 
 function pick(selectedType) {
@@ -246,18 +248,42 @@ function pick(selectedType) {
         }
     }
 }
+function pickAll(){
+    displayOptions();
+    reset.classList.toggle("active");
 
+    hotel.classList.remove("active");
+    hostel.classList.remove("active");
+    apartment.classList.remove("active");
+
+}
 function pickHotel() {
     pick('hotel');
-}
+    hotel.classList.toggle("active");
 
+    hostel.classList.remove("active");
+    apartment.classList.remove("active");
+    reset.classList.remove("active");
+
+}
 
 function pickHostel() {
     pick('hostel');
+    hostel.classList.toggle("active");
+
+    hotel.classList.remove("active");
+    apartment.classList.remove("active");
+    reset.classList.remove("active");
+
 }
 
 function pickApartment() {
     pick('apartment');
+    apartment.classList.toggle("active");
+
+    hostel.classList.remove("active");
+    hotel.classList.remove("active");
+    reset.classList.remove("active");
 }
 
 

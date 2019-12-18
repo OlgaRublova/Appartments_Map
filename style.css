@@ -22,7 +22,7 @@ body {
     width: 1000px;
     height: 700px;
     background-color: whitesmoke;
-    box-shadow:  0 0 5px 0 darkgray;
+    box-shadow: 0 0 5px 0 darkgray;
 
 }
 
@@ -77,18 +77,26 @@ body {
     font-family: 'Pragati Narrow', sans-serif;
     font-size: 20px;
     padding: 0 15px;
-    height:40px;
+    height: 40px;
 }
 
 .container__housing > div {
-    /*padding: 0 15px;*/
+    padding: 3px 5px;
 }
-.container__housing > div:hover{
+
+.container__housing > div:hover {
     background-color: #0059a8;
     color: whitesmoke;
     font-weight: bold;
-
 }
+
+.active {
+    background-color: #0059a8;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+
 
 .container__list {
     display: flex;
@@ -111,8 +119,9 @@ body {
 
     flex: 1;
 }
-.list__item:hover{
-    background-color: rgba(217,219,221, 0.3);
+
+.list__item:hover {
+    background-color: rgba(217, 219, 221, 0.3);
 }
 
 .item__img {
@@ -125,13 +134,15 @@ body {
     height: 100%;
     object-fit: cover;
 }
-.item__text{
+
+.item__text {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     text-transform: capitalize;
     flex: 1;
 }
+
 .item__text div {
     display: flex;
     justify-content: space-between;
@@ -139,20 +150,23 @@ body {
     font-size: 19px;
     padding: 0 0 0 10px;
 }
-.item__text--main{
+
+.item__text--main {
     color: #0059a8;
     font-weight: bold;
     line-height: 1.2;
 
 }
-.item__text--sec{
+
+.item__text--sec {
     color: grey;
 }
+
 .item__text--sec span {
     padding: 0 0 0 10px;
 }
 
-.item__text--price{
+.item__text--price {
     color: #0059a8;
     font-weight: bold;
     line-height: 1.2;
