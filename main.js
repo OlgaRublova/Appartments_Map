@@ -12,7 +12,8 @@ database = [
         guest: "2",
         price: "$1917",
         name: "Bella Vista At Warner Ridge",
-        cover: "https://photos.zillowstatic.com/cc_ft_768/ISes2lgv1yxk311000000000.jpg"
+        cover: "https://photos.zillowstatic.com/cc_ft_768/ISes2lgv1yxk311000000000.jpg",
+        style: 'block'
     },
     {
         type: "apartment",
@@ -237,32 +238,36 @@ hostel.addEventListener("click", pickHostel);
 apartment.addEventListener("click", pickApartment);
 
 
-function pickHotel() {
-    const arrHotel = database.filter(type => type.type === "hotel");
-    console.log(arrHotel);
-
+function pick(selectedType) {
+    for (const i in database) {
+        document.getElementById('el-' + i).style.display = 'flex';
+        if (database[i].type !== selectedType) {
+            document.getElementById('el-' + i).style.display = 'none';
+        }
+    }
 }
 
-function pickHostel() {
-    const arrHostel = database.filter(type => type.type === "hostel");
-    console.log(arrHostel);
+function pickHotel() {
+    pick('hotel');
+}
 
+
+function pickHostel() {
+    pick('hostel');
 }
 
 function pickApartment() {
-    const arrApartment = database.filter(type => type.type === "apartment");
-    console.log(arrApartment);
-
+    pick('apartment');
 }
-
 
 
 function displayOptions(option) {
     const list = document.querySelector(".container__list");
     let result = '';
+    let counter = 0;
     database.forEach(option => {
         result += `
-     <div class="list__item">
+     <div class="list__item" id="el-${counter}">
                 <div class="item__img">
                     <img src="${option.cover} " alt="">
                 </div>
@@ -279,6 +284,7 @@ function displayOptions(option) {
                 </div>
             </div>
       `;
+        counter++;
     });
 
     list.innerHTML = result;
